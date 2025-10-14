@@ -10,5 +10,6 @@ type Item struct {
 }
 
 func (i Item) Info() string {
-	return fmt.Sprintf("ID %d | Name: %s | Quantidade: %d | Prince: %.2f", i.ID, i.Name, i.Quantity, i.Price)
+	return fmt.Sprintf("ID %d | Name: %s | Quantidade: %d | Price: %.2f", i.ID, i.Name, i.
+		Quantity, i.Price)
 }
