@@ -10,16 +10,16 @@ func main() {
 
 	item1 := models.Item{
 		ID:       1,
-		Name:     "Primeiro Produto",
+		Name:     "Camiseta",
 		Quantity: 10,
-		Price:    19.99,
+		Price:    29.99,
 	}
 
 	item2 := models.Item{
 		ID:       2,
-		Name:     "Segundo Produto",
+		Name:     "Mochila",
 		Quantity: 5,
-		Price:    9.99,
+		Price:    49.99,
 	}
 
 	fmt.Println(item1.Info())
