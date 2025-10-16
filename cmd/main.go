@@ -11,8 +11,8 @@ func main() {
 	estoque := services.NewEstoque()
 	itens := []models.Item{
 		{ID: 1, Name: "Fone", Quantity: 10, Price: 100},
-		{ID: 1, Name: "Camiseta", Quantity: 1, Price: 55.99},
-		{ID: 1, Name: "Mouse", Quantity: 2, Price: 12.99},
+		{ID: 2, Name: "Camiseta", Quantity: 1, Price: 55.99},
+		{ID: 3, Name: "Mouse", Quantity: 2, Price: 12.99},
 	}
 
 	for _, item := range itens {
@@ -22,6 +22,9 @@ func main() {
 			continue
 		}
 	}
-	fmt.Println(estoque)
+	for _, item := range estoque.ListItems() {
+		fmt.Printf("\nID: %d | Item: %s | Quantidade %d | Preço: %2.f", item.ID, item.Name,
+			item.Quantity, item.Price)
+	}
 
 }
