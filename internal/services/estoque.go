@@ -30,10 +30,16 @@ func (e *Estoque) AddItem(item models.Item) error {
 	return nil
 }
 
+// Definindo o método ListItems para a estrutura Estoque
 func (e *Estoque) ListItems() []models.Item {
+	// Criando uma lista vazia para armazenar os itens do estoque
 	var itemList []models.Item
+	// Iniciando um loop para iterar sobre todos os itens no estoque
+	// O range percorre a coleção e retorna o índice (não utilizado aqui representado pelo _) e o item
 	for _, item := range e.items {
+		// Adicionando o item atual na lista itemList
 		itemList = append(itemList, item)
 	}
+	// Retornando a lista completa de itens
 	return itemList
 }
