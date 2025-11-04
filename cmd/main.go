@@ -16,7 +16,7 @@ func main() {
 	}
 
 	for _, item := range itens {
-		err := estoque.AddItem(item)
+		err := estoque.AddItem(item, "Gabriel")
 		if err != nil {
 			fmt.Println(err)
 			continue
