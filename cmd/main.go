@@ -22,9 +22,15 @@ func main() {
 			continue
 		}
 	}
-	for _, item := range estoque.ListItems() {
-		fmt.Printf("\nID: %d | Item: %s | Quantidade %d | Preço: %2.f", item.ID, item.Name,
-			item.Quantity, item.Price)
+	//for _, item := range estoque.ListItems() {
+	//	fmt.Printf("\nID: %d | Item: %s | Quantidade %d | Preço: %2.f", item.ID, item.Name,
+	//		item.Quantity, item.Price)
+	//}
+
+	logs := estoque.ViewAuditLog()
+	for _, log := range logs {
+		fmt.Printf("\n[%s] Ação: %s - Usuário: %s - Item ID: %d - Quantidade: %d - Motivo: %s",
+			log.Timestamp.Format("01/02 15:04:05"), log.Action, log.User, log.ItemID, log.Quantity, log.Reason)
 	}
 
 }

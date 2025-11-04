@@ -54,3 +54,7 @@ func (e *Estoque) ListItems() []models.Item {
 	// Retornando a lista completa de itens
 	return itemList
 }
+
+func (e *Estoque) ViewAuditLog() []models.Log {
+	return e.logs
+}
