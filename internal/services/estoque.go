@@ -66,3 +66,43 @@ func (e *Estoque) CalculateTotalCost() float64 {
 	}
 	return totalCost
 }
+
+func (e *Estoque) RemoveItem(itemID int, quantity int, user string) error {
+	// Valide a existência do item no estoque
+	existingItem, exists := e.items[strconv.Itoa(itemID)]
+	if !exists {
+		return fmt.Errorf("erro ao remover item: [ID:%d] não existe no estoque", itemID)
+	}
+
+	// Verifique se a quantidade a ser removida é válida
+	if quantity <= 0 {
+		return fmt.Errorf("erro ao remover item: quantidade inválida (zero ou negativa) para [ID:%d]", itemID)
+	}
+
+	// Verifique se a quantidade disponível no estoque é suficiente
+	if existingItem.Quantity < quantity {
+		return fmt.Errorf("erro ao remover item: estoque insuficiente para [ID:%d]. Disponível: %d, Solicitado: %d", itemID, existingItem.Quantity, quantity)
+	}
+
+	// Atualize o estoque removendo a quantidade informada
+	existingItem.Quantity -= quantity
+	if existingItem.Quantity == 0 {
+		// Remova o item completamente se a quantidade for zero
+		delete(e.items, strconv.Itoa(itemID))
+	} else {
+		// Atualize a quantidade do item no estoque
+		e.items[strconv.Itoa(itemID)] = existingItem
+	}
+
+	// Registre a operação em um log
+	e.logs = append(e.logs, models.Log{
+		Timestamp: time.Now(),
+		Action:    "Saída de estoque",
+		User:      user,
+		ItemID:    itemID,
+		Quantity:  quantity,
+		Reason:    "Removendo itens do estoque",
+	})
+
+	return nil
+}
