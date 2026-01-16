@@ -35,4 +35,9 @@ func main() {
 	//		log.Timestamp.Format("01/02 15:04:05"), log.Action, log.User, log.ItemID, log.Quantity, log.Reason)
 	//}
 
+	itemByName, err := services.FindByName(itens, "Camiseta")
+	if err != nil {
+		fmt.Println(err)
+	}
+	fmt.Print(itemByName)
 }
