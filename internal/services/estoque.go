@@ -107,7 +107,7 @@ func (e *Estoque) RemoveItem(itemID int, quantity int, user string) error {
 	return nil
 }
 
-func FindByName[T any](data []T, comparator func(T) bool) ([]T, error) {
+func FindBy[T any](data []T, comparator func(T) bool) ([]T, error) {
 	var result []T
 	for _, v := range data {
 		if comparator(v) {

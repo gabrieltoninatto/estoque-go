@@ -22,12 +22,12 @@ func main() {
 			continue
 		}
 	}
-	for _, item := range estoque.ListItems() {
-		fmt.Printf("\nID: %d | Item: %s | Quantidade %d | Preço: %2.f", item.ID, item.Name,
-			item.Quantity, item.Price)
-	}
+	//for _, item := range estoque.ListItems() {
+	//fmt.Printf("\nID: %d | Item: %s | Quantidade %d | Preço: %2.f", item.ID, item.Name,
+	//item.Quantity, item.Price)
+	//}
 
-	fmt.Println("\nValor total do estoque R$:", estoque.CalculateTotalCost())
+	//fmt.Println("\nValor total do estoque R$:", estoque.CalculateTotalCost())
 
 	//logs := estoque.ViewAuditLog()
 	//for _, log := range logs {
@@ -35,9 +35,11 @@ func main() {
 	//		log.Timestamp.Format("01/02 15:04:05"), log.Action, log.User, log.ItemID, log.Quantity, log.Reason)
 	//}
 
-	itemByName, err := services.FindByName(itens, "Camiseta")
+	itemParaBuscar, err := services.FindBy(itens, func(item models.Item) bool {
+		return item.Price > 40
+	})
 	if err != nil {
 		fmt.Println(err)
 	}
-	fmt.Print(itemByName)
+	fmt.Print("Item encontrado: ", itemParaBuscar)
 }
