@@ -35,11 +35,20 @@ func main() {
 	//		log.Timestamp.Format("01/02 15:04:05"), log.Action, log.User, log.ItemID, log.Quantity, log.Reason)
 	//}
 
-	itemParaBuscar, err := services.FindBy(itens, func(item models.Item) bool {
-		return item.Price > 40
-	})
-	if err != nil {
-		fmt.Println(err)
+	// 	itemParaBuscar, err := services.FindBy(itens, func(item models.Item) bool {
+	// 		return item.Price > 40
+	// 	})
+	// 	if err != nil {
+	// 		fmt.Println(err)
+	// 	}
+	// 	fmt.Print("Item encontrado: ", itemParaBuscar)
+	// }
+
+	alura := services.Fornecedor{
+		CNPJ:    "123456",
+		Contato: "11970707070",
+		Cidade:  "São Paulo",
 	}
-	fmt.Print("Item encontrado: ", itemParaBuscar)
+
+	fmt.Println(alura.GetInfo())
 }
